@@ -1,4 +1,4 @@
-name: FreeRDP
+version: 2.1
 
 on: workflow_dispatch
 
@@ -13,6 +13,8 @@ jobs:
       run: |
         Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
         Invoke-WebRequest https://raw.githubusercontent.com/robin98/MyRAD/main/start.bat -OutFile start.bat
+        Invoke-WebRequest https://raw.githubusercontent.com/robin98/MyRAD/main/wallpaper.png -OutFile wallpaper.bmp
+        Invoke-WebRequest https://raw.githubusercontent.com/robin98/MyRAD/main/wallpaper.bat -OutFile wallpaper.bat
     - name: Mendownload Launcher.
       run: |
         Invoke-WebRequest https://raw.githubusercontent.com/robin98/MyRAD/main/launcher/Node.js.lnk -OutFile Node.js.lnk
@@ -28,6 +30,8 @@ jobs:
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
         Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
+        copy wallpaper.bmp D:\a\wallpaper.bmp
+        copy wallpaper.bat D:\a\wallpaper.bat
         copy Node.js.lnk C:\Users\Public\Desktop\Node.js.lnk
         copy "Visual Studio 2019.lnk" "C:\Users\Public\Desktop\Visual Studio 2019.lnk"
     - name: Membuat Tunnel.
