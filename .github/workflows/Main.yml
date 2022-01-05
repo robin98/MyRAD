@@ -1,4 +1,4 @@
-version: 2.1
+name: FreeRDP
 
 on: workflow_dispatch
 
